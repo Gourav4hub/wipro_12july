@@ -1,0 +1,37 @@
+Spring Boot : It is a framework for creating Web REST APIs.
+
+Spring MVC....
+
+	MVC : Model View Controller
+	
+		Controller : Manage Request and Response
+		Model : Database and Business Logic
+		View  : Presentation Layer
+		
+	View >>> Controller >>> Model >>> Controller >>> View
+	
+	MVC2 : 	
+	
+		Controller : Manage Request and Response
+		Model : 
+			Database       : DB Repository
+			Business Logic : Service Layer
+		View  : Presentation Layer
+		
+	View >>> Controller >>> Service >>> Model >>> Service >>> Controller >>> View
+	
+********************************************************************************************
+
+
+	Controller >>> Service >>> Model >>> Service >>> Controller >>> Data(JSON)
+	
+	 
+
+
+
+
+
+
+
+
+	
