@@ -70,10 +70,10 @@ public class StudentController
 	
 	
 	@PostMapping("/req6")
-	public Student req6(@RequestBody Map<String, Object> data) 
+	public Student req6(@RequestBody Map<String, String> data) 
 	{
-		Student ob = new Student((int)data.get("rollnumber"),data.get("name").toString(),
-				((Double)data.get("marks")).floatValue(),data.get("city").toString());
+		Student ob = new Student(Integer.parseInt(data.get("rollnumber")),data.get("name").toString(),
+				Float.parseFloat(data.get("marks")),data.get("city").toString());
 		return ob;
 	}
 	
