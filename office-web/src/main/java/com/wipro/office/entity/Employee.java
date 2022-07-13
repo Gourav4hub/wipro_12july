@@ -29,7 +29,6 @@ public class Employee
 	@Column(name = "emp_email",nullable = false,unique = true,length = 100)
 	private String empEmail;
 	
-	@JsonIgnore
 	@Column(name = "emp_password", nullable = false,length = 10)
 	private String empPassword;
 	
