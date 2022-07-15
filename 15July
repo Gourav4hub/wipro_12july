@@ -1,0 +1,51 @@
+
+
+	RDBMS				MongoDB
+
+      Schema DB				Schema Less DB
+      
+      
+      Database 				Database
+      
+      Tables (Schema)			Collections (No Schema)	
+      
+      Records				Document (JSON)
+      
+******************************************************************************
+
+
+show databases;
+
+use <database name>;
+
+db.createCollection('employee');
+
+show collections;
+
+db.employee.insertOne({data});
+
+db.employee.insertMany([{data},{data}]);
+
+db.employee.find();
+
+db.employee.find().pretty();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

@@ -18,14 +18,14 @@ public class EmployeeService
 	public ApiResponse saveEmployee(Employee emp) 
 	{
 		try {
-			Optional<Employee> op = empRepo.findById(emp.getEmpId());
-			if(op.isEmpty())
-			{
-				empRepo.save(emp);
+			//Optional<Employee> op = empRepo.findById(emp.getEmpId());
+			//if(op.isEmpty())
+			//{
+				empRepo.insert(emp);
 				return new ApiResponse(true, "Employee Saved Successfully !");
-			}else {
-				return new ApiResponse(false, "Employee Already Exist !");
-			}
+			//}else {
+			//	return new ApiResponse(false, "Employee Already Exist !");
+			//}
 		}catch(Exception ex) {
 			System.err.print("Save Employee Error : " + ex.getMessage());
 			return new ApiResponse(false, "Employee Not Saved !");
@@ -54,7 +54,7 @@ public class EmployeeService
 		return new ApiResponse(true, empRepo.findAll());
 	}
 
-	public ApiResponse get(Integer empId) 
+	public ApiResponse get(String empId) 
 	{
 		Optional<Employee> op = empRepo.findById(empId);
 		if(op.isPresent()) {
@@ -64,7 +64,7 @@ public class EmployeeService
 		}
 	}
 
-	public ApiResponse deleteEmployee(Integer empId) 
+	public ApiResponse deleteEmployee(String empId) 
 	{
 		try {
 			Optional<Employee> op = empRepo.findById(empId);

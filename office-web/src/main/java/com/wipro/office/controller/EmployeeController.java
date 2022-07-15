@@ -43,7 +43,7 @@ public class EmployeeController
 	
 	// PathVariable
 	@GetMapping("/get/{empid}")
-	public ApiResponse getEmployee(@PathVariable(name = "empid") Integer empId) 
+	public ApiResponse getEmployee(@PathVariable(name = "empid") String empId) 
 	{
 		ApiResponse response = empService.get(empId);
 		return response;
@@ -57,7 +57,7 @@ public class EmployeeController
 	}	
 	
 	@DeleteMapping("/delete/{empid}")
-	public ApiResponse deleteEmployee(@PathVariable(name = "empid") Integer empId) 
+	public ApiResponse deleteEmployee(@PathVariable(name = "empid") String empId) 
 	{
 		ApiResponse response = empService.deleteEmployee(empId);
 		return response;
