@@ -4,8 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.wipro.office2.model.AddressModel;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +20,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "addressId")
 public class Address 
 {
 
@@ -27,6 +33,9 @@ public class Address
 	private String street;
 	private String city;
 	private String pincode;
+	
+	 @OneToOne(mappedBy = "address")
+	 private Employee employee;
 	
 	public Address(AddressModel address) {
 		this.street = address.getStreet();
