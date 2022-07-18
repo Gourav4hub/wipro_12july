@@ -30,6 +30,20 @@ db.employee.find();
 
 db.employee.find().pretty();
 
+db.employee.find({city:'indore'}).pretty();
+
+db.employee.find({salary:{$gt:25000}}).pretty();
+
+	$gt
+	$gte
+	$lt
+	$lte
+	$ne
+	
+db.employee.updateOne({email:"hitesh@gmail.com"},{$set:{city:'pune',salary:35000}});
+
+	
+
 
 
 
