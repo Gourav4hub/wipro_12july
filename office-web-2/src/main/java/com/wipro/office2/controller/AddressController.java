@@ -23,14 +23,14 @@ import com.wipro.office2.service.AddressService;
 import com.wipro.office2.service.EmployeeService;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/api/address")
 public class AddressController 
 {
 	@Autowired
 	private AddressService addressService;
 	
 	
-	@GetMapping("/list")
+	@GetMapping("/")
 	public ApiResponse listAdress()
 	{
 		ApiResponse response = addressService.listAdress();
@@ -38,7 +38,7 @@ public class AddressController
 	}
 	
 	// PathVariable
-	@GetMapping("/get/{addid}")
+	@GetMapping("/{addid}")
 	public ApiResponse getAddress(@PathVariable(name = "addid") Integer addId) 
 	{
 		ApiResponse response = addressService.get(addId);

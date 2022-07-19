@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wipro.office2.entity.Employee;
+import com.wipro.office2.model.EmployeeModel;
 import com.wipro.office2.repository.AddressRepository;
 import com.wipro.office2.repository.EmployeeRepository;
 import com.wipro.office2.response.ApiResponse;
@@ -31,13 +32,17 @@ public class EmployeeService
 		}
 	}
 	
-	public ApiResponse updateEmployee(Employee emp) 
+	public ApiResponse updateEmployee(Integer empId,EmployeeModel emp) 
 	{
 		try {
-			Optional<Employee> op = empRepo.findById(emp.getEmpId());
+			Optional<Employee> op = empRepo.findById(empId);
 			if(op.isPresent())
 			{
-				empRepo.save(emp);
+				Employee empObj = new Employee(emp);
+				empObj.setEmpId(empId);
+				empObj.getAddress().setAddressId(op.get().getAddress().getAddressId());
+				
+				empRepo.save(empObj);
 				return new ApiResponse(true, "Employee Updated Successfully !");
 			}else {
 				return new ApiResponse(false, "Employee Not Exist !");

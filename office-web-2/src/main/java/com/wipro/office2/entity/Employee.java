@@ -3,6 +3,7 @@ package com.wipro.office2.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,11 +45,11 @@ public class Employee
 	
 	private Float empSalary;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address")
 	private Address address;
 	
-	@OneToMany(mappedBy = "employee")
+	@OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
 	private List<SalaryRecord> salaryRecords;
 
 	public Employee(EmployeeModel emp) {

@@ -40,4 +40,18 @@ public class SalaryRecordService
 		}
 	}
 
+	public ApiResponse list() 
+	{
+		return new ApiResponse(true, salRepo.findAll());
+	}
+
+	public ApiResponse get(Integer salId) {
+		Optional<SalaryRecord> op = salRepo.findById(salId);
+		if(op.isPresent()) {
+			return new ApiResponse(true, op.get());
+		}else {
+			return new ApiResponse(false, "No Salary Record Found !");
+		}
+	}
+
 }
