@@ -1,0 +1,34 @@
+Patient
+	firstname
+	lastname
+	phone
+	disease
+	
+PatientVisit
+	
+	visitDate
+	doctorname
+	
+PatientTest
+
+	testdate
+	testtype
+	result
+	
+	Patient have multiple Visit
+	Visit have multiple test
+
+			
+API:
+	Save PAtient
+	List Patient
+	Get Patient
+	
+	Save Visit
+	List Visit
+	
+	Save Test
+	List Test
+	
+	List Visit By Patient
+	List Test By Patient
