@@ -39,6 +39,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 		 return new BCryptPasswordEncoder();
 	}
 	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/admin/**");
+		super.configure(web);
+	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
