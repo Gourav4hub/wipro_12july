@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.wipro.office2.service.UserService;
 
@@ -24,9 +25,9 @@ import com.wipro.office2.service.UserService;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter 
 {
 	@Autowired
-	private DataSource datasource; 
-	@Autowired
 	private UserService userService;
+	@Autowired
+	private UnauthorizedEntryPoint unauthorizedEntryPoint;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception 
@@ -57,11 +58,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 		.antMatchers("/api/salaryrecord/").hasAnyRole("OFFICE_ADMIN","OFFICE_HR")
 		.and()
 		.exceptionHandling().accessDeniedPage("/accessDenied");
+		
+		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	  	@Override
 	    @Bean
 	    public AuthenticationManager authenticationManagerBean() throws Exception {
 	        return super.authenticationManagerBean();
+	    }
+	    @Bean
+	    public JwtAuthenticationFilter authenticationTokenFilterBean() throws Exception {
+	        return new JwtAuthenticationFilter();
 	    }
 }

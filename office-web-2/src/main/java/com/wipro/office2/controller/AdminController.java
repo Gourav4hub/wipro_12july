@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wipro.office2.config.TokenProvider;
 import com.wipro.office2.model.LoginUserModel;
 import com.wipro.office2.response.ApiResponse;
 
@@ -22,10 +23,13 @@ public class AdminController
 {
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	@Autowired
+	private TokenProvider jwtTokenUtil;
 		
 	@PostMapping("/authenticate")
 	public ApiResponse authenticate(@RequestBody LoginUserModel loginUser)
 	{
+		System.out.println(loginUser);
 		try {
 		final Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
@@ -34,7 +38,8 @@ public class AdminController
 				)
 		);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		return new ApiResponse(true, "Login Success");
+		final String token = jwtTokenUtil.generateToken(authentication);		
+		return new ApiResponse(true,"Login Success",token);
 		}catch(BadCredentialsException ex) {
 			return new ApiResponse(false, "Login Failed");
 		}
